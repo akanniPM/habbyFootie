@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vanilla CRM SaaS Starter</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <section class="landing-top">
+            <header class="main-nav">
+                <div class="landing-container main-nav__inner">
+                    <p class="brand-logo">stylescape</p>
+                    <nav class="main-nav__links">
+                        <a href="#">Home</a>
+                        <a href="#">Shop <span aria-hidden="true">▾</span></a>
+                        <a href="#">Our story</a>
+                        <a href="#">Journal</a>
+                    </nav>
+                    <div class="main-nav__icons" aria-hidden="true">
+                        <span>⌕</span>
+                        <span>◯</span>
+                        <span>◔</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="landing-container">
+                <section class="hero-carousel" id="heroCarousel" aria-label="Male footwear showcase">
+
+                    <!-- slides -->
+                    <div class="hero-carousel__slides">
+                        <div class="hero-carousel__slide is-active"
+                            style="background-image:url('images/aria-johnson-CR1Wo3lTdWY-unsplash.jpg')"></div>
+                        <div class="hero-carousel__slide"
+                            style="background-image:url('images/clay-banks-gDMD50gEibI-unsplash.jpg')"></div>
+                        <div class="hero-carousel__slide"
+                            style="background-image:url('images/StyleScape%20(Ocean)%20-%20Shopify%20Fashion%20Theme.jfif')"></div>
+                    </div>
+
+                    <!-- dark overlay -->
+                    <div class="hero-carousel__dim" aria-hidden="true"></div>
+
+                    <!-- centred content -->
+                    <div class="hero-carousel__content">
+                        <h1>Make a Statement with<br>Our High-End Shoes</h1>
+                        <button class="hero-carousel__cta" type="button">SHOP NOW</button>
+                    </div>
+
+                    <!-- prev / next arrows -->
+                    <button class="hero-carousel__arrow hero-carousel__arrow--prev"
+                        id="heroPrev" aria-label="Previous slide">&#8592;</button>
+                    <button class="hero-carousel__arrow hero-carousel__arrow--next"
+                        id="heroNext" aria-label="Next slide">&#8594;</button>
+
+                    <!-- dot indicators -->
+                    <div class="hero-carousel__dots" id="heroDots" aria-hidden="true">
+                        <span class="hero-carousel__dot is-active" data-index="0"></span>
+                        <span class="hero-carousel__dot" data-index="1"></span>
+                        <span class="hero-carousel__dot" data-index="2"></span>
+                    </div>
+
+                </section>
+            </div>
+        </section>
+
+        <main class="app-shell">
+            <section class="auth" id="authView">
+                <div class="auth__card">
+                    <p class="eyebrow">CRM SaaS Starter</p>
+                    <h1 class="title">Welcome back</h1>
+                    <p class="subtitle">Sign in to access your pipeline, leads, and team insights.</p>
+
+                    <form id="authForm" class="form">
+                        <label class="field">
+                            <span>Email</span>
+                            <input type="email" placeholder="you@company.com" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Password</span>
+                            <input type="password" placeholder="••••••••" required />
+                        </label>
+
+                        <button type="submit" class="btn btn--primary" id="authButton">Sign in</button>
+                    </form>
+
+                    <button class="btn btn--ghost" id="switchAuthMode" type="button">
+                        Need an account? Create one
+                    </button>
+
+                    <p class="footnote">
+                        Next step: wire this form to Firebase Auth (signInWithEmailAndPassword /
+                        createUserWithEmailAndPassword).
+                    </p>
+                </div>
+            </section>
+
+            <section class="dashboard hidden" id="dashboardView">
+                <aside class="sidebar" id="sidebar">
+                    <div class="brand">
+                        <div class="brand__dot"></div>
+                        <span>PipelineHQ</span>
+                    </div>
+
+                    <nav class="nav">
+                        <button class="nav__item nav__item--active">Dashboard</button>
+                        <button class="nav__item">Leads</button>
+                        <button class="nav__item">Deals</button>
+                        <button class="nav__item">Activities</button>
+                        <button class="nav__item">Team</button>
+                        <button class="nav__item">Billing</button>
+                        <button class="nav__item">Settings</button>
+                    </nav>
+
+                    <button class="btn btn--ghost sidebar__toggle" id="sidebarToggle" type="button">
+                        Collapse
+                    </button>
+                </aside>
+
+                <div class="main">
+                    <header class="topbar">
+                        <div>
+                            <h2>Sales Dashboard</h2>
+                            <p>Track opportunities, conversion, and team activity.</p>
+                        </div>
+                        <div class="topbar__actions">
+                            <input class="search" type="text" placeholder="Search leads or deals..." />
+                            <button class="btn btn--primary">+ New Deal</button>
+                            <button class="btn" id="signOutButton" type="button">Sign out</button>
+                        </div>
+                    </header>
+
+                    <section class="stats">
+                        <article class="card stat">
+                            <p>Open Deals</p>
+                            <strong>42</strong>
+                            <span>+8% this week</span>
+                        </article>
+                        <article class="card stat">
+                            <p>MRR Influenced</p>
+                            <strong>$84,300</strong>
+                            <span>+12% this month</span>
+                        </article>
+                        <article class="card stat">
+                            <p>Win Rate</p>
+                            <strong>31%</strong>
+                            <span>Stable vs last month</span>
+                        </article>
+                        <article class="card stat">
+                            <p>Avg. Cycle</p>
+                            <strong>21 days</strong>
+                            <span>-2 days improvement</span>
+                        </article>
+                    </section>
+
+                    <section class="board">
+                        <h3>Pipeline</h3>
+                        <div class="board__columns">
+                            <div class="column" data-column>
+                                <h4>New</h4>
+                                <article class="deal" draggable="true">Acme Corp — $12k</article>
+                                <article class="deal" draggable="true">Pine Labs — $8.5k</article>
+                            </div>
+                            <div class="column" data-column>
+                                <h4>Qualified</h4>
+                                <article class="deal" draggable="true">Orbit Tech — $24k</article>
+                            </div>
+                            <div class="column" data-column>
+                                <h4>Proposal</h4>
+                                <article class="deal" draggable="true">Northwind — $16k</article>
+                            </div>
+                            <div class="column" data-column>
+                                <h4>Closed Won</h4>
+                                <article class="deal" draggable="true">Delta AI — $30k</article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="table-wrap card">
+                        <div class="table-wrap__head">
+                            <h3>Recent Leads</h3>
+                            <button class="btn">View all</button>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                    <th>Stage</th>
+                                    <th>Owner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sarah Cole</td>
+                                    <td>Vertex Labs</td>
+                                    <td><span class="pill">Qualified</span></td>
+                                    <td>Ken</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcus Lee</td>
+                                    <td>Nimbus Cloud</td>
+                                    <td><span class="pill">Proposal</span></td>
+                                    <td>Ari</td>
+                                </tr>
+                                <tr>
+                                    <td>Ivy Park</td>
+                                    <td>Atlas Security</td>
+                                    <td><span class="pill">New</span></td>
+                                    <td>Nina</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <script src="js/index.js"></script>
+    </body>
+</html>
