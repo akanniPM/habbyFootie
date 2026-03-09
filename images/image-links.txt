@@ -1,0 +1,6 @@
+# Remote Product Image Links
+# These images are used in the hero carousel and reserved for the product API
+
+https://cdn.pixabay.com/photo/2021/02/05/08/31/brogue-shoes-5983822_1280.jpg
+https://cdn.pixabay.com/photo/2021/03/08/12/06/oxford-shoes-6078951_1280.jpg
+https://pixabay.com/images/download/u_2k4dtu9w7u-shoes-8212405_1920.jpg

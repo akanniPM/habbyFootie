@@ -6,7 +6,7 @@ const nextBtn  = document.getElementById('heroNext');
 
 let current  = 0;
 let timer    = null;
-const DELAY  = 5000;
+const DELAY  = 3000;
 
 function goTo(index) {
     slides[current].classList.remove('is-active');
@@ -35,8 +35,7 @@ dots.forEach((dot) => {
     });
 });
 
-carousel.addEventListener('mouseenter', stopAuto);
-carousel.addEventListener('mouseleave', startAuto);
+// hover does not pause — carousel keeps moving
 
 // touch / swipe support
 let touchStartX = 0;
@@ -48,3 +47,69 @@ carousel.addEventListener('touchend', (e) => {
 }, { passive: true });
 
 startAuto();
+// ── Scroll-reveal (IntersectionObserver) ──────────────────────────────
+const revealEls = document.querySelectorAll('[data-reveal]');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach((el) => revealObserver.observe(el));
+
+// ── Best Sellers horizontal carousel ─────────────────────────────────
+const bsTrack = document.getElementById('bsTrack');
+const bsPrev  = document.getElementById('bsPrev');
+const bsNext  = document.getElementById('bsNext');
+
+if (bsTrack && bsPrev && bsNext) {
+    const getCardWidth = () => {
+        const card = bsTrack.querySelector('.bs-card');
+        if (!card) return 300;
+        return card.getBoundingClientRect().width + 20; // 20 = gap
+    };
+
+    let bsOffset = 0;
+
+    const clampOffset = (val) => {
+        const maxScroll = bsTrack.scrollWidth - bsTrack.parentElement.offsetWidth;
+        return Math.max(0, Math.min(val, maxScroll));
+    };
+
+    const applyOffset = () => {
+        bsTrack.style.transform = `translateX(-${bsOffset}px)`;
+        bsPrev.disabled = bsOffset <= 0;
+        bsNext.disabled = bsOffset >= bsTrack.scrollWidth - bsTrack.parentElement.offsetWidth;
+    };
+
+    bsNext.addEventListener('click', () => {
+        bsOffset = clampOffset(bsOffset + getCardWidth());
+        applyOffset();
+    });
+
+    bsPrev.addEventListener('click', () => {
+        bsOffset = clampOffset(bsOffset - getCardWidth());
+        applyOffset();
+    });
+
+    applyOffset();
+}
+
+// ── Newsletter form ───────────────────────────────────────────────────
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = newsletterForm.querySelector('input[type="email"]');
+        const btn   = newsletterForm.querySelector('button[type="submit"]');
+        if (!input.value) return;
+        btn.textContent = 'You\'re in!';
+        btn.disabled = true;
+        input.disabled = true;
+        input.value = '';
+        input.placeholder = 'Thank you for subscribing ✓';
+    });
+}
