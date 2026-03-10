@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Men's Collection — habbyFootie</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../highend.css" />
+    <link rel="stylesheet" href="../css/collection.css" />
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════
+         NAVBAR
+    ════════════════════════════════════════ -->
+    <header class="main-nav" id="mainNav">
+        <div class="container main-nav__inner">
+
+            <nav class="main-nav__links" aria-label="Primary navigation">
+                <a href="../highend.html" class="main-nav__link">Home</a>
+                <a href="#" class="main-nav__link is-active">
+                    Shop
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </a>
+                <a href="#" class="main-nav__link">Collections</a>
+                <a href="#" class="main-nav__link">About</a>
+            </nav>
+
+            <a href="../highend.html" class="brand-logo">habbyFootie</a>
+
+            <div class="main-nav__actions">
+                <button class="nav-icon-btn" aria-label="Search">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="nav-icon-btn" aria-label="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
+                <button class="nav-icon-btn" aria-label="Cart (0 items)">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ═══════════════════════════════════════
+         COLLECTION HERO BANNER
+    ════════════════════════════════════════ -->
+    <section class="col-hero">
+        <div class="col-hero__overlay" aria-hidden="true"></div>
+        <div class="container col-hero__inner">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../highend.html" class="breadcrumb__link">Home</a>
+                <span class="breadcrumb__sep" aria-hidden="true">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </span>
+                <span class="breadcrumb__current">Men's Collection</span>
+            </nav>
+            <h1 class="col-hero__title">Men's Collection</h1>
+            <p class="col-hero__sub">Premium footwear, curated for the discerning gentleman</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         STICKY FILTER BAR
+    ════════════════════════════════════════ -->
+    <div class="filter-bar" id="filterBar" role="region" aria-label="Filter and sort">
+        <div class="container filter-bar__inner">
+
+            <!-- Category tabs -->
+            <nav class="cat-tabs" id="catTabs" aria-label="Product categories" role="tablist">
+                <button class="cat-tab is-active" data-category="all" role="tab" aria-selected="true">All</button>
+                <button class="cat-tab" data-category="oxfords-derbys" role="tab" aria-selected="false">Oxfords &amp; Derbys</button>
+                <button class="cat-tab" data-category="loafers" role="tab" aria-selected="false">Loafers</button>
+                <button class="cat-tab" data-category="brogues" role="tab" aria-selected="false">Brogues</button>
+                <button class="cat-tab" data-category="monk-straps" role="tab" aria-selected="false">Monk Straps</button>
+                <button class="cat-tab" data-category="boots" role="tab" aria-selected="false">Boots</button>
+                <button class="cat-tab" data-category="sneakers" role="tab" aria-selected="false">Sneakers</button>
+                <button class="cat-tab" data-category="casual-sandals" role="tab" aria-selected="false">Casual &amp; Sandals</button>
+            </nav>
+
+            <!-- Sort + count -->
+            <div class="filter-bar__right">
+                <span class="product-count" id="productCount">Showing 0 products</span>
+                <div class="sort-wrap">
+                    <label class="sort-label" for="sortSelect">
+                        <span class="material-symbols-outlined" aria-hidden="true">swap_vert</span>
+                        Sort
+                    </label>
+                    <select class="sort-select" id="sortSelect" aria-label="Sort products">
+                        <option value="new">New Arrivals</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="price-asc">Price: Low → High</option>
+                        <option value="price-desc">Price: High → Low</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Subcategory chips (shown when a tab is active) -->
+        <div class="subchips-wrap" id="subchipsWrap" aria-label="Subcategory filters" hidden>
+            <div class="container">
+                <div class="subchips" id="subchips" role="group"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+         PRODUCT GRID
+    ════════════════════════════════════════ -->
+    <main class="collection-main">
+        <div class="container">
+
+            <!-- Active filter pills (shows applied filters) -->
+            <div class="active-filters" id="activeFilters" hidden>
+                <span class="active-filters__label">Filtered by:</span>
+                <div class="active-filters__pills" id="filterPills"></div>
+                <button class="clear-all" id="clearAll" type="button">
+                    Clear all
+                    <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                </button>
+            </div>
+
+            <!-- Grid -->
+            <div class="product-grid coll-grid" id="productGrid" role="list"
+                aria-label="Product listing" aria-live="polite">
+                <!-- Injected by collection.js -->
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyState" hidden>
+                <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+                <p>No products found for the selected filters.</p>
+                <button class="btn-outline-gold" id="emptyReset" type="button">Clear Filters</button>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-wrap" id="loadMoreWrap" hidden>
+                <button class="btn-outline-gold load-more-btn" id="loadMoreBtn" type="button">
+                    Load More Products
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <p class="load-more-meta" id="loadMoreMeta"></p>
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════ -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container site-footer__top">
+
+            <div>
+                <a href="../highend.html" class="footer-brand__logo">habbyFootie</a>
+                <p class="footer-brand__tagline">Premium male footwear.<br>Crafted to be worn for life.</p>
+                <div class="footer-social" aria-label="Social media links">
+                    <a href="#" class="footer-social__link" aria-label="Instagram">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a href="#" class="footer-social__link" aria-label="Twitter / X">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                    <a href="#" class="footer-social__link" aria-label="Facebook">
+                        <span class="material-symbols-outlined">groups</span>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="footer-nav-col" aria-label="Shop links">
+                <p class="footer-nav-col__heading">Shop</p>
+                <a href="#">New Arrivals</a>
+                <a href="#">Oxfords</a>
+                <a href="#">Loafers</a>
+                <a href="#">Boots</a>
+                <a href="#">Sneakers</a>
+                <a href="#">Sale</a>
+            </nav>
+
+            <nav class="footer-nav-col" aria-label="Help links">
+                <p class="footer-nav-col__heading">Help</p>
+                <a href="#">Size Guide</a>
+                <a href="#">Returns &amp; Exchanges</a>
+                <a href="#">Track Order</a>
+                <a href="#">FAQs</a>
+                <a href="#">Contact Us</a>
+            </nav>
+
+            <nav class="footer-nav-col" aria-label="Company links">
+                <p class="footer-nav-col__heading">Company</p>
+                <a href="#">Our Story</a>
+                <a href="#">Craftsmanship</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </nav>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom__inner">
+                <p class="footer-copy">&copy; 2026 habbyFootie. All rights reserved.</p>
+                <div class="payment-icons" aria-label="Accepted payment methods">
+                    <span class="pay-badge">Paystack</span>
+                    <span class="pay-badge">Visa</span>
+                    <span class="pay-badge">Mastercard</span>
+                    <span class="pay-badge">Verve</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../js/collection.js"></script>
+
+</body>
+</html>

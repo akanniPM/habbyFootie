@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Men Shoes — Premium Footwear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <style>
+        /* ────────────────────────────────────────────────
+           RESET & BASE
+        ──────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black:   #0a0a0a;
+            --dark:    #111111;
+            --wood:    #2c1a0e;
+            --gold:    #c9a96e;
+            --warm:    #8b5e3c;
+            --light:   #f4f0eb;
+            --white:   #ffffff;
+            --muted:   #888888;
+            --border:  #e8e2da;
+            --serif:   'Playfair Display', Georgia, serif;
+            --sans:    'Inter', system-ui, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.15; }
+        a { text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        ul { list-style: none; }
+        button { font: inherit; cursor: pointer; }
+
+        .container {
+            width: min(1280px, 100% - 48px);
+            margin-inline: auto;
+        }
+
+        /* ────────────────────────────────────────────────
+           NAVBAR
+        ──────────────────────────────────────────────── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            background: var(--black);
+            height: 58px;
+        }
+
+        .navbar__inner {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-right { justify-content: flex-end; }
+
+        .nav-link {
+            color: rgba(255,255,255,0.72);
+            font-size: 12.5px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: var(--white); }
+
+        .nav-brand {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.02em;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .nav-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 18px;
+            border: 1px solid rgba(255,255,255,0.45);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            border-radius: 3px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .nav-contact:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: var(--white);
+        }
+
+        /* ────────────────────────────────────────────────
+           HERO
+        ──────────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--wood);
+        }
+
+        /* Wood texture background */
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=1400&q=80');
+            background-size: cover;
+            background-position: center bottom;
+            filter: brightness(0.55) saturate(0.85);
+        }
+
+        /* Dark gradient overlay for text legibility */
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10,6,3,0.45) 0%,
+                rgba(10,6,3,0.18) 40%,
+                rgba(10,6,3,0.55) 100%
+            );
+        }
+
+        /* Left shoe */
+        .hero__shoe-left {
+            position: absolute;
+            bottom: 0;
+            left: 4%;
+            width: 36%;
+            max-width: 480px;
+            transform: rotate(-8deg) translateX(-20px);
+            filter: drop-shadow(0 24px 40px rgba(0,0,0,0.65));
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .hero__shoe-left img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        /* Right shoe */
+        .hero__shoe-right {
+            position: absolute;
+            bottom: 0;
+            right: 4%;
+            width: 36%;
+            max-width: 480px;
+            transform: rotate(8deg) translateX(20px);
+            filter: drop-shadow(0 24px 40px rgba(0,0,0,0.65));
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .hero__shoe-right img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .hero:hover .hero__shoe-left  { transform: rotate(-5deg) translateX(-8px) translateY(-8px); }
+        .hero:hover .hero__shoe-right { transform: rotate(5deg)  translateX(8px)  translateY(-8px); }
+
+        /* Centred text content */
+        .hero__content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+            pointer-events: none;
+        }
+
+        .hero__eyebrow {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 10px;
+        }
+
+        .hero__divider {
+            width: 36px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 18px;
+        }
+
+        .hero__title {
+            font-family: var(--serif);
+            font-size: clamp(42px, 6.5vw, 86px);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.0;
+            color: var(--white);
+            text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+            margin-bottom: 36px;
+        }
+
+        .hero__cta {
+            pointer-events: all;
+            display: inline-block;
+            padding: 13px 36px;
+            border: 1.5px solid rgba(255,255,255,0.65);
+            background: transparent;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+        }
+
+        .hero__cta:hover {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* scroll hint */
+        .hero__scroll {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            translate: -50% 0;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.45);
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            animation: bounce 2.2s infinite;
+        }
+
+        .hero__scroll .material-symbols-outlined { font-size: 18px; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(7px); }
+        }
+
+        /* ────────────────────────────────────────────────
+           PRODUCT SPOTLIGHT  — editorial split layout
+        ──────────────────────────────────────────────── */
+        .spotlight {
+            padding: 100px 0 80px;
+            background: var(--white);
+        }
+
+        /* Row A: text left + 2-col grid right */
+        .spotlight__row-a {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .spotlight__text {
+            padding-top: 12px;
+        }
+
+        .spotlight__label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .spotlight__heading {
+            font-family: var(--serif);
+            font-size: clamp(30px, 3.2vw, 46px);
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .spotlight__body {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 420px;
+            margin-bottom: 32px;
+        }
+
+        .btn-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 12px 28px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 2px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-dark:hover {
+            background: #2a2a2a;
+            transform: translateY(-2px);
+        }
+
+        .btn-dark .material-symbols-outlined { font-size: 16px; }
+
+        /* 2-column mini product grid on the right */
+        .spotlight__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Row B: 2 large images left + text right */
+        .spotlight__row-b {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .spotlight__row-b-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .spotlight__row-b-text {
+            padding-left: 12px;
+        }
+
+        /* Product card shared styles */
+        .p-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .p-card__img {
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #f0ebe3;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .p-card__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .p-card:hover .p-card__img img { transform: scale(1.06); }
+
+        .p-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,8,6,0.0);
+            display: grid;
+            place-items: center;
+            transition: background 0.25s;
+        }
+
+        .p-card:hover .p-card__overlay { background: rgba(10,8,6,0.22); }
+
+        .p-card__quick {
+            opacity: 0;
+            background: var(--white);
+            color: var(--dark);
+            border: none;
+            padding: 9px 18px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            translate: 0 10px;
+            transition: opacity 0.25s, translate 0.25s;
+        }
+
+        .p-card:hover .p-card__quick {
+            opacity: 1;
+            translate: 0 0;
+        }
+
+        .p-card__type {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .p-card__name {
+            font-family: var(--serif);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .p-card__price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* ────────────────────────────────────────────────
+           "BEAUTIFULLY SCARCE" DARK BANNER
+        ──────────────────────────────────────────────── */
+        .banner {
+            background: var(--black);
+            padding: 90px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(201,169,110,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .banner__tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .banner__title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
+        }
+
+        .banner__divider {
+            width: 44px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 22px;
+        }
+
+        .banner__sub {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.52);
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .btn-outline-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 36px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            background: transparent;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* ────────────────────────────────────────────────
+           FOOTER
+        ──────────────────────────────────────────────── */
+        .footer {
+            background: var(--black);
+            border-top: 1px solid #1c1c1c;
+        }
+
+        .footer__top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding: 64px 0 48px;
+        }
+
+        .footer__brand-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .footer__brand-desc {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.38);
+            margin-bottom: 24px;
+        }
+
+        .footer__social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer__social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid #222;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.45);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer__social-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .footer__social-link .material-symbols-outlined { font-size: 17px; }
+
+        .footer__col-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer__col-links {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer__col-links a {
+            font-size: 13px;
+            color: rgba(255,255,255,0.42);
+            transition: color 0.2s;
+        }
+
+        .footer__col-links a:hover { color: rgba(255,255,255,0.85); }
+
+        .footer__col-links li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.42);
+        }
+
+        .footer__col-links li span {
+            font-size: 11px;
+            color: var(--gold);
+        }
+
+        .footer__bottom {
+            border-top: 1px solid #181818;
+            padding: 20px 0;
+        }
+
+        .footer__bottom-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .footer__copy {
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer__payments {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pay-chip {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 4px 10px;
+        }
+
+        /* ────────────────────────────────────────────────
+           SCROLL REVEAL
+        ──────────────────────────────────────────────── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        [data-reveal].is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        [data-reveal][data-delay="1"] { transition-delay: 0.1s; }
+        [data-reveal][data-delay="2"] { transition-delay: 0.2s; }
+        [data-reveal][data-delay="3"] { transition-delay: 0.3s; }
+        [data-reveal][data-delay="4"] { transition-delay: 0.4s; }
+
+        /* ────────────────────────────────────────────────
+           RESPONSIVE
+        ──────────────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .spotlight__row-a,
+            .spotlight__row-b { grid-template-columns: 1fr; }
+            .spotlight__row-b-images { order: -1; }
+            .spotlight__row-b-text { padding-left: 0; }
+            .footer__top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            .nav-left, .nav-right { display: none; }
+            .navbar__inner { grid-template-columns: 1fr; justify-items: center; }
+            .hero__shoe-left  { width: 44%; left: -2%; }
+            .hero__shoe-right { width: 44%; right: -2%; }
+            .hero__title { font-size: 36px; }
+            .spotlight__grid { grid-template-columns: 1fr; }
+            .spotlight__row-b-images { grid-template-columns: 1fr; }
+            .footer__top { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════
+         NAVBAR
+    ══════════════════════════════════════════════ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container navbar__inner">
+
+            <ul class="nav-left">
+                <li><a href="#" class="nav-link">History</a></li>
+                <li><a href="#" class="nav-link">Visit For</a></li>
+                <li><a href="#" class="nav-link">Profile</a></li>
+            </ul>
+
+            <a href="#" class="nav-brand">Men Shoes</a>
+
+            <ul class="nav-right">
+                <li><a href="#" class="nav-link">Refer</a></li>
+                <li><a href="#" class="nav-link">Category</a></li>
+                <li><a href="#" class="nav-contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero showcase">
+
+        <!-- Wood texture bg -->
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__overlay" aria-hidden="true"></div>
+
+        <!-- Left shoe — black loafer -->
+        <div class="hero__shoe-left" aria-hidden="true">
+            <img
+                src="https://cdn.pixabay.com/photo/2020/07/30/11/39/shoe-5449711_1280.jpg"
+                alt="Black loafer"
+                style="border-radius:4px;"
+            />
+        </div>
+
+        <!-- Right shoe — brown oxford -->
+        <div class="hero__shoe-right" aria-hidden="true">
+            <img
+                src="https://cdn.pixabay.com/photo/2021/03/08/12/06/oxford-shoes-6078951_1280.jpg"
+                alt="Brown oxford"
+                style="border-radius:4px;"
+            />
+        </div>
+
+        <!-- Centred text -->
+        <div class="hero__content">
+            <p class="hero__eyebrow">Learn Your</p>
+            <div class="hero__divider" aria-hidden="true"></div>
+            <h1 class="hero__title">Men's Shoes</h1>
+            <a href="#spotlight" class="hero__cta">Learn More</a>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="hero__scroll" aria-hidden="true">
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         PRODUCT SPOTLIGHT
+    ══════════════════════════════════════════════ -->
+    <section class="spotlight" id="spotlight" aria-labelledby="spotlightHead">
+        <div class="container">
+
+            <!-- Row A: text left · grid right -->
+            <div class="spotlight__row-a">
+
+                <div class="spotlight__text" data-reveal>
+                    <p class="spotlight__label">Curated Collection</p>
+                    <h2 class="spotlight__heading" id="spotlightHead">
+                        Leather &amp;<br>Derby Shoes
+                    </h2>
+                    <p class="spotlight__body">
+                        Handcrafted from full-grain calf leather and built on a Goodyear-welted sole — our shoes are made to be worn for decades, not seasons. Each pair ages beautifully, developing a rich patina unique to the wearer.
+                    </p>
+                    <button class="btn-dark" type="button">
+                        BUY NOW
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+
+                <div class="spotlight__grid">
+                    <div class="p-card" data-reveal data-delay="1">
+                        <div class="p-card__img">
+                            <img src="https://cdn.pixabay.com/photo/2021/03/08/12/06/oxford-shoes-6078951_640.jpg" alt="Oxford shoes" loading="lazy" />
+                            <div class="p-card__overlay">
+                                <button class="p-card__quick" type="button">Quick Add</button>
+                            </div>
+                        </div>
+                        <p class="p-card__type">Oxford</p>
+                        <h3 class="p-card__name">Cap Toe Oxford</h3>
+                        <p class="p-card__price">₦61,000</p>
+                    </div>
+                    <div class="p-card" data-reveal data-delay="2">
+                        <div class="p-card__img">
+                            <img src="https://cdn.pixabay.com/photo/2021/02/05/08/31/brogue-shoes-5983822_640.jpg" alt="Brogue shoes" loading="lazy" />
+                            <div class="p-card__overlay">
+                                <button class="p-card__quick" type="button">Quick Add</button>
+                            </div>
+                        </div>
+                        <p class="p-card__type">Brogue</p>
+                        <h3 class="p-card__name">Wingtip Brogue</h3>
+                        <p class="p-card__price">₦38,500</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Row B: 2 large images left · text right -->
+            <div class="spotlight__row-b">
+
+                <div class="spotlight__row-b-images">
+                    <div class="p-card" data-reveal data-delay="1">
+                        <div class="p-card__img">
+                            <img src="https://cdn.pixabay.com/photo/2020/07/30/11/39/shoe-5449711_1280.jpg" alt="Black derby" loading="lazy" />
+                            <div class="p-card__overlay">
+                                <button class="p-card__quick" type="button">Quick Add</button>
+                            </div>
+                        </div>
+                        <p class="p-card__type">Derby</p>
+                        <h3 class="p-card__name">Midnight Derby</h3>
+                        <p class="p-card__price">₦49,000</p>
+                    </div>
+                    <div class="p-card" data-reveal data-delay="2">
+                        <div class="p-card__img">
+                            <img src="https://cdn.pixabay.com/photo/2019/07/28/02/55/shoes-4367529_640.jpg" alt="Formal shoes" loading="lazy" />
+                            <div class="p-card__overlay">
+                                <button class="p-card__quick" type="button">Quick Add</button>
+                            </div>
+                        </div>
+                        <p class="p-card__type">Sneaker</p>
+                        <h3 class="p-card__name">Casual White</h3>
+                        <p class="p-card__price">₦33,000</p>
+                    </div>
+                    <div class="p-card" data-reveal data-delay="3">
+                        <div class="p-card__img">
+                            <img src="https://cdn.pixabay.com/photo/2017/08/06/20/53/boots-2598697_640.jpg" alt="Boots" loading="lazy" />
+                            <div class="p-card__overlay">
+                                <button class="p-card__quick" type="button">Quick Add</button>
+                            </div>
+                        </div>
+                        <p class="p-card__type">Boots</p>
+                        <h3 class="p-card__name">Chelsea Boot</h3>
+                        <p class="p-card__price">₦67,500</p>
+                    </div>
+                </div>
+
+                <div class="spotlight__row-b-text" data-reveal>
+                    <p class="spotlight__label">Bestseller</p>
+                    <h2 class="spotlight__heading">
+                        The Storied<br>Perforated<br>Derby
+                    </h2>
+                    <p class="spotlight__body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum nisl vel lacus tempus, nec tincidunt felis gravida. Crafted for the man who never compromises.
+                    </p>
+                    <button class="btn-dark" type="button">
+                        ADD TO CART
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         DARK BANNER — "Beautifully Scarce"
+    ══════════════════════════════════════════════ -->
+    <section class="banner" aria-labelledby="bannerHead">
+        <div class="container">
+            <p class="banner__tag" data-reveal>Crafted for few</p>
+            <h2 class="banner__title" data-reveal id="bannerHead">Beautifully Scarce</h2>
+            <div class="banner__divider" data-reveal aria-hidden="true"></div>
+            <p class="banner__sub" data-reveal>
+                The best footwear you will ever browse this season,
+                for those who understand that quality always outlasts quantity.
+            </p>
+            <a href="#" class="btn-outline-gold" data-reveal>
+                Explore Collection
+                <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__top">
+
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="footer__brand-name">Men Shoes</a>
+                    <p class="footer__brand-desc">
+                        Premium male footwear handcrafted by artisans.<br>
+                        Built to be worn for life, not just a season.
+                    </p>
+                    <div class="footer__social" aria-label="Social media">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Twitter">
+                            <span class="material-symbols-outlined">language</span>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <span class="material-symbols-outlined">groups</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Rent Shoes -->
+                <nav aria-label="Shop links">
+                    <p class="footer__col-title">Rent Shoes</p>
+                    <ul class="footer__col-links">
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Derby</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Leather Style</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Suede</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Balanced</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Shopping</li>
+                    </ul>
+                </nav>
+
+                <!-- Conditions -->
+                <nav aria-label="Conditions">
+                    <p class="footer__col-title">Conditions</p>
+                    <ul class="footer__col-links">
+                        <a href="#">Size Guide</a>
+                        <a href="#">Returns Policy</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Care Guide</a>
+                        <a href="#">FAQs</a>
+                    </ul>
+                </nav>
+
+                <!-- Legale Listing -->
+                <nav aria-label="Legal">
+                    <p class="footer__col-title">Legale Listing</p>
+                    <ul class="footer__col-links">
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Display</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Transfer Style</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Skincare</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Security</li>
+                        <li><span class="material-symbols-outlined" style="font-size:13px;">check</span>Swapping</li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__bottom-inner">
+                    <p class="footer__copy">&copy; 2026 Men Shoes. Camway Lifestyle Furnishing | Est. 11/2021</p>
+                    <div class="footer__payments">
+                        <span class="pay-chip">Paystack</span>
+                        <span class="pay-chip">Visa</span>
+                        <span class="pay-chip">Mastercard</span>
+                        <span class="pay-chip">Verve</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════════
+         JS — scroll reveal
+    ══════════════════════════════════════════════ -->
+    <script>
+        const reveals = document.querySelectorAll('[data-reveal]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('is-visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
