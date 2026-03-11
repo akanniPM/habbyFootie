@@ -1,0 +1,22 @@
+MALE-FOOTWEAR-WORKFLOW.md
+
+# ── Environment / secrets ──────────────────────
+.env
+.env.local
+.env*.local
+firebase-credentials.json
+serviceAccountKey.json
+
+# ── Node (for upload scripts & Cloud Functions) ─
+node_modules/
+functions/node_modules/
+
+# ── Firebase local emulator cache ───────────────
+.firebase/
+firebase-debug.log
+firestore-debug.log
+storage.rules.bak
+
+# ── OS noise ────────────────────────────────────
+.DS_Store
+Thumbs.db
